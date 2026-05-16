@@ -1,6 +1,63 @@
-# ClinicalFlow — AI-Assisted EMR Visit Note (Prototype)
+# Kubcio — AI-Assisted EMR Visit Note (Prototype)
 
 An 8-hour technical assignment prototype for generating, reviewing, and saving SOAP visit notes from consultation transcripts using Anthropic Claude.
+
+## Demo
+
+[![Watch the demo](https://cdn.loom.com/sessions/thumbnails/ba4d8238d7404f688cb272c9300e526d-with-play.gif)](https://www.loom.com/share/ba4d8238d7404f688cb272c9300e526d)
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React 18, TypeScript, Vite |
+| Styling | Tailwind CSS, shadcn/ui, Lucide Icons |
+| Backend | Node.js, Express, TypeScript |
+| AI | Anthropic Claude (`claude-haiku-4-5-20251001`) |
+| Validation | express-validator |
+| Process Manager | PM2 |
+| Deployment | AWS S3 (frontend), AWS EC2 (backend) |
+| CI/CD | GitHub Actions |
+
+## Folder Structure
+
+```
+Kubcio/
+├── .github/
+│   └── workflows/
+│       ├── deploy-frontend.yml   # Build + sync to S3
+│       └── deploy-backend.yml    # SSH to EC2, build, PM2 restart
+├── backend/
+│   ├── src/
+│   │   ├── index.ts              # Express app, CORS, routes
+│   │   ├── middleware/
+│   │   │   └── roleCheck.ts      # x-user-role enforcement
+│   │   ├── routes/
+│   │   │   ├── notes.ts          # SOAP generate + save + list
+│   │   │   ├── patient.ts        # Patient info
+│   │   │   └── audit.ts          # Audit log
+│   │   ├── services/
+│   │   │   └── aiService.ts      # Anthropic Claude integration
+│   │   └── store/
+│   │       └── inMemoryStore.ts  # In-memory data store
+│   ├── ecosystem.config.js       # PM2 config
+│   └── package.json
+├── frontend/
+│   ├── src/
+│   │   ├── App.tsx               # Root layout + state
+│   │   ├── api/
+│   │   │   └── client.ts         # Typed API client
+│   │   └── components/
+│   │       ├── Sidebar.tsx       # Patient info + role switcher
+│   │       ├── Topbar.tsx        # Header bar
+│   │       ├── TranscriptCard.tsx# Transcript input + generate
+│   │       ├── SoapEditor.tsx    # Editable SOAP fields + save
+│   │       ├── VisitHistory.tsx  # Past visits list
+│   │       └── AuditLog.tsx      # Collapsible audit events
+│   └── package.json
+├── .env.example
+└── README.md
+```
 
 ## Running Locally
 
