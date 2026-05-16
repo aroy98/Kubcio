@@ -31,9 +31,9 @@ export function Sidebar({ patient, role, onRoleChange }: SidebarProps) {
       <div className="p-4">
         <div className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded bg-blue-600 text-sm font-bold text-white">
-            CF
+            K
           </div>
-          <span className="font-semibold text-gray-900">ClinicalFlow</span>
+          <span className="font-semibold text-gray-900">Kubcio</span>
         </div>
 
         {patient && (

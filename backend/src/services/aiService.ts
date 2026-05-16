@@ -1,10 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { PATIENT } from "../store/inMemoryStore";
 
-const client = new Anthropic({
-  apiKey: process.env.AI_PROVIDER_API_KEY,
-});
-
 export interface SoapNote {
   subjective: string;
   objective: string;
@@ -30,6 +26,7 @@ export function parseSoapJson(raw: string): SoapNote {
 }
 
 export async function generateSoapNote(transcript: string): Promise<SoapNote> {
+  const client = new Anthropic({ apiKey: process.env.AI_PROVIDER_API_KEY });
   const message = await client.messages.create({
     model: process.env.AI_MODEL || "claude-haiku-4-5-20251001",
     max_tokens: 1024,

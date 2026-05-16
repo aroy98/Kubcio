@@ -54,6 +54,7 @@ router.post(
 
       return res.json({ visitId, soap });
     } catch (err) {
+      console.error("[AI Error]", err);
       if (err instanceof SyntaxError || (err as Error).message === "Invalid SOAP structure") {
         return res.status(502).json({
           error: "AIError",
@@ -63,6 +64,7 @@ router.post(
       return res.status(502).json({
         error: "AIError",
         message: "AI generation failed. Please check your API key.",
+        detail: (err as Error).message,
       });
     }
   }

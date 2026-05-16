@@ -69,37 +69,39 @@ function App() {
           </div>
         )}
         <Topbar visitId={visitId} />
-        <div className="mt-4 grid grid-cols-1 gap-4 xl:grid-cols-[1fr_380px]">
-          <div className="space-y-4">
-            <TranscriptCard
-              transcript={transcript}
-              onTranscriptChange={setTranscript}
-              role={role}
-              patientId={PATIENT_ID}
-              generating={generating}
-              onGeneratingChange={setGenerating}
-              onGenerated={(id, generatedSoap) => {
-                setVisitId(id);
-                setSoap(generatedSoap);
-                loadNotesAndAudit();
-              }}
-            />
-            {soap && visitId && (
-              <SoapEditor
-                soap={soap}
-                onSoapChange={setSoap}
-                visitId={visitId}
-                patientId={PATIENT_ID}
+        <div className={`mt-4 grid grid-cols-1 gap-4 ${role === "doctor" ? "xl:grid-cols-[1fr_380px]" : ""}`}>
+          {role === "doctor" && (
+            <div className="space-y-4">
+              <TranscriptCard
                 transcript={transcript}
+                onTranscriptChange={setTranscript}
                 role={role}
-                saving={saving}
-                onSavingChange={setSaving}
-                lastSaved={lastSaved}
-                onSaved={setLastSaved}
-                onRefresh={loadNotesAndAudit}
+                patientId={PATIENT_ID}
+                generating={generating}
+                onGeneratingChange={setGenerating}
+                onGenerated={(id, generatedSoap) => {
+                  setVisitId(id);
+                  setSoap(generatedSoap);
+                  loadNotesAndAudit();
+                }}
               />
-            )}
-          </div>
+              {soap && visitId && (
+                <SoapEditor
+                  soap={soap}
+                  onSoapChange={setSoap}
+                  visitId={visitId}
+                  patientId={PATIENT_ID}
+                  transcript={transcript}
+                  role={role}
+                  saving={saving}
+                  onSavingChange={setSaving}
+                  lastSaved={lastSaved}
+                  onSaved={setLastSaved}
+                  onRefresh={loadNotesAndAudit}
+                />
+              )}
+            </div>
+          )}
           <VisitHistory notes={notes} auditEvents={auditEvents} />
         </div>
       </main>
