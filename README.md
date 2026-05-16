@@ -4,7 +4,7 @@ A prototype for generating, reviewing, and saving SOAP visit notes from consulta
 
 ## Demo
 
-[![Watch the demo](https://cdn.loom.com/sessions/thumbnails/ba4d8238d7404f688cb272c9300e526d-with-play.gif)](https://www.loom.com/share/ba4d8238d7404f688cb272c9300e526d)
+https://www.loom.com/share/ba4d8238d7404f688cb272c9300e526d
 
 ## Tech Stack
 
