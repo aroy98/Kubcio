@@ -22,6 +22,9 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             set -e
+            if [ ! -d ~/kubcio ]; then
+              git clone https://github.com/${{ github.repository }}.git ~/kubcio
+            fi
             cd ~/kubcio
             git pull origin master
             cd backend
