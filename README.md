@@ -1,6 +1,6 @@
 # Kubcio — AI-Assisted EMR Visit Note (Prototype)
 
-An 8-hour technical assignment prototype for generating, reviewing, and saving SOAP visit notes from consultation transcripts using Anthropic Claude.
+A prototype for generating, reviewing, and saving SOAP visit notes from consultation transcripts using Anthropic Claude.
 
 ## Demo
 
