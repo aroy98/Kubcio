@@ -28,7 +28,8 @@ jobs:
             cd ~/kubcio
             git pull origin master
             cd backend
-            npm ci --omit=dev
+            npm ci
             npm run build
+            npm prune --omit=dev
             pm2 restart ecosystem.config.js --update-env || pm2 start ecosystem.config.js
             pm2 save
